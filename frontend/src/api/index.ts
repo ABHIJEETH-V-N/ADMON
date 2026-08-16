@@ -599,7 +599,7 @@ app.post('/api/auction/open', async (c) => {
 // POST /api/auction/bid — Returns unsigned calldata for advertiser's wallet & saves bid in Supabase
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 app.post('/api/auction/bid', async (c) => {
-  const { supabaseAdmin, publicClient, contractAddress } = getClients(c.env)
+  const { supabaseAdmin, publicClient, contractAddress, account } = getClients(c.env)
 
   const body = await c.req.json<{
     slotId: number
@@ -618,7 +618,7 @@ app.post('/api/auction/bid', async (c) => {
       .from('bids')
       .insert({
         slot_id:      body.slotId,
-        bidder:       body.bidder || '0xMF...2026',
+        bidder:       body.bidder || '0x237A...B6C9',
         amount_eth:   body.bidAmount,
         creative_ref: body.creativeUrl,
       })
@@ -628,12 +628,21 @@ app.post('/api/auction/bid', async (c) => {
 
   const bidWei = parseEther(body.bidAmount)
 
-  if (contractAddress === '0x0000000000000000000000000000000000000000') {
+  // Target recipient address for MetaMask:
+  // Use contractAddress if valid and not zero; fallback to Relayer/Creator Public Address (account.address)
+  const isContractValid = contractAddress &&
+    contractAddress.startsWith('0x') &&
+    contractAddress.length === 42 &&
+    contractAddress !== '0x0000000000000000000000000000000000000000'
+
+  const targetRecipient = isContractValid ? contractAddress : account.address
+
+  if (!isContractValid) {
     return c.json({
       success: true,
       auctionId: '1',
       unsignedTx: {
-        to: contractAddress,
+        to: targetRecipient,
         data: '0x',
         value: `0x${bidWei.toString(16)}`,
         chainId: monadTestnet.id,
@@ -659,7 +668,7 @@ app.post('/api/auction/bid', async (c) => {
       success:   true,
       auctionId: auctionId.toString(),
       unsignedTx: {
-        to:      contractAddress,
+        to:      targetRecipient,
         data:    calldata,
         value:   `0x${bidWei.toString(16)}`,
         chainId: monadTestnet.id,
@@ -670,7 +679,7 @@ app.post('/api/auction/bid', async (c) => {
       success: true,
       auctionId: '1',
       unsignedTx: {
-        to: contractAddress,
+        to: targetRecipient,
         data: '0x',
         value: `0x${bidWei.toString(16)}`,
         chainId: monadTestnet.id,
