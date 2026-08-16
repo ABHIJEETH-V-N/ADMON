@@ -5,7 +5,7 @@ FROM node:20-alpine AS base
 
 # Step 1: Install dependencies
 FROM base AS deps
-RUN apk add --no-libc6-compat python3 make g++
+RUN apk add --no-cache libc6-compat python3 make g++
 WORKDIR /app
 
 # Copy root package files
