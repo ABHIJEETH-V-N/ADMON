@@ -1,0 +1,12 @@
+# Foundry artifacts
+out/
+cache/
+
+# Environment secrets - NEVER commit
+.env
+
+# Node modules for bots
+bots/node_modules/
+
+# IDE
+.DS_Store

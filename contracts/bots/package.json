@@ -1,0 +1,21 @@
+{
+  "name": "adexchange-bots",
+  "version": "1.0.0",
+  "description": "Advertiser bots for the On-Chain RTB Exchange demo",
+  "type": "module",
+  "scripts": {
+    "bot": "tsx bots/bot.ts",
+    "bot:acme": "tsx bots/bot.ts --name=acme --color=blue",
+    "bot:buzz": "tsx bots/bot.ts --name=buzz --color=red",
+    "bot:core": "tsx bots/bot.ts --name=core --color=green"
+  },
+  "dependencies": {
+    "viem": "^2.21.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0",
+    "@types/node": "^22.0.0",
+    "dotenv": "^16.4.0"
+  }
+}
