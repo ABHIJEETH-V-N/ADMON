@@ -1,5 +1,7 @@
 # ADMOD — On-Chain Real-Time Bidding (RTB) Ad Exchange
 
+**contract address**: 0x1d6A305A2547439D11389192ddCE3bF5318D1B42
+
 [![Monad Testnet](https://img.shields.io/badge/Network-Monad%20Testnet%20(10143)-8a2be2)](https://testnet-rpc.monad.xyz/)
 [![Framework](https://img.shields.io/badge/Framework-Next.js%2016%20%7C%20Hono-black)](https://nextjs.org/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-blue)](https://www.docker.com/)
