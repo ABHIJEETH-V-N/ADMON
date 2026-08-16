@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+web/node_modules/
+
+# Next.js Build Outputs
+.next/
+frontend/.next/
+out/
+build/
+
+# Foundry / Smart Contract Artifacts
+contracts/out/
+contracts/cache/
+contracts/lib/
+
+# Local Environment Overrides
+.env.local
+frontend/.env.local
+*.log
+
+# OS Files
+.DS_Store
