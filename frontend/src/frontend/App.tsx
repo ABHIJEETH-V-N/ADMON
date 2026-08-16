@@ -406,38 +406,26 @@ export default function App() {
 
 function Landing({ onStart }: { onStart: () => void }) {
   return (
-    <div className="landing">
-      <div className="landing-nav">
-        <div className="brand"><span className="brand-mark"><span /></span><span>AD<span className="brand-muted">mon</span></span></div>
-        <button className="text-button" onClick={onStart}>Enter exchange <ArrowUpRight size={14} /></button>
-      </div>
-      <div className="landing-hero">
-        <div className="hero-copy">
-          <p className="eyebrow"><span className="pulse" />MONAD TESTNET · ON-CHAIN RTB</p>
-          <h1>Turn every ad slot into a live market.</h1>
-          <p>ADmon connects publishers and advertisers through transparent, real-time bidding settled directly on Monad.</p>
-          <div className="hero-actions">
-            <button className="primary-button" onClick={onStart}>Launch Workspace <ArrowUpRight size={16} /></button>
-            <button className="outline-button" onClick={onStart}>Explore Exchange</button>
-          </div>
-          <div className="hero-proof">
-            <span><Check size={14} />Stateless relay</span>
-            <span><Check size={14} />Live bid ledger</span>
-            <span><Check size={14} />Direct settlement</span>
-          </div>
+    <div className="landing" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', padding: '24px' }}>
+      <div style={{ maxWidth: '680px', margin: '0 auto' }}>
+        <div className="brand" style={{ fontSize: '36px', justifyContent: 'center', marginBottom: '24px' }}>
+          <span className="brand-mark" style={{ width: '40px', height: '40px' }}><span /></span>
+          <span style={{ fontSize: '44px', fontWeight: 700 }}>AD<span className="brand-muted">mon</span></span>
         </div>
-        <div className="hero-visual">
-          <div className="orbit-card">
-            <div className="visual-top"><span className="live-label"><span className="pulse" />LIVE AUCTION</span><span>slot-001</span></div>
-            <div className="visual-title">Developer docs<br /><b>hero placement</b></div>
-            <div className="visual-chart"><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /></div>
-            <div className="visual-bottom"><span>Real-time Bidding</span><span>Monad RPC</span></div>
-          </div>
+        <p className="eyebrow" style={{ color: '#a88cff', letterSpacing: '0.12em', fontSize: '13px', marginBottom: '16px' }}>
+          <span className="pulse" /> MONAD TESTNET · ON-CHAIN RTB
+        </p>
+        <h1 style={{ fontFamily: 'Space Grotesk', fontSize: '44px', lineHeight: 1.15, fontWeight: 700, margin: '0 0 16px 0', background: 'linear-gradient(135deg, #ffffff 0%, #a88cff 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+          Decentralised Advertisement Service & Bidding Platform
+        </h1>
+        <p style={{ color: '#9da7c0', fontSize: '17px', lineHeight: 1.6, margin: '0 0 32px 0' }}>
+          ADmon connects publishers and advertisers through transparent, real-time ad slot auctions settled on Monad.
+        </p>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '16px' }}>
+          <button className="primary-button" style={{ padding: '14px 28px', fontSize: '15px' }} onClick={onStart}>
+            Enter ADmon Exchange <ArrowUpRight size={18} />
+          </button>
         </div>
-      </div>
-      <div className="landing-footer">
-        <span>Built for the Monad ecosystem</span>
-        <span>Publish inventory. Bid transparently. Settle instantly.</span>
       </div>
     </div>
   )
