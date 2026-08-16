@@ -39,8 +39,8 @@ export type AuthResponse = {
   error?: string
 }
 
-const API_BASE = typeof process !== 'undefined' && process.env?.NEXT_PUBLIC_API_URL
-  ? process.env.NEXT_PUBLIC_API_URL
+const API_BASE = (typeof process !== 'undefined' && (process.env?.NEXT_PUBLIC_API_URL || process.env?.NEXT_PUBLIC_API_BASE_URL || process.env?.VITE_API_BASE_URL))
+  ? (process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_API_BASE_URL || process.env.VITE_API_BASE_URL || '').replace(/\/+$/, '')
   : ''
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
