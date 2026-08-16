@@ -1,8 +1,8 @@
-# ADMOD — Dockerfile Syntax & Build Fix Report
+# ADMOD — Git Commit & GitHub Desktop Fix Report
 
 **Date**: August 16, 2026  
 **Target Network**: Monad Testnet (`10143`)  
-**Status**: 🟢 **Dockerfile Fixed & Local Build Verified**
+**Status**: 🟢 **Git Working Tree 100% Clean & Ready to Push**
 
 ---
 
@@ -10,13 +10,13 @@
 
 ADMOD is a decentralized Real-Time Bids (RTB) ad exchange connecting publishers and advertisers through transparent, on-chain auction ledgers on the Monad network.
 
-All core layers are fully built, integrated, 100% purged of mock data, Web3 Wallet connected, enabled with **Fixed Dockerfile Apk Command & Verified Build Script**:
-1. **Dockerfile Fix ([`Dockerfile`](file:///Users/devnarayanan/Documents/KIMI/kim-ui/ADMOD/Dockerfile))**: Fixed Alpine Linux `apk add` flag syntax from `--no-libc6-compat` to `--no-cache libc6-compat`.
-2. **One-Click Build Script ([`build.sh`](file:///Users/devnarayanan/Documents/KIMI/kim-ui/ADMOD/build.sh))**: Executable bash script compiling Foundry smart contracts (`AdExchange.sol` Solc 0.8.24) and building Next.js 16 Web Bundle & Hono API handler in **866ms**.
+All core layers are fully built, integrated, 100% purged of mock data, Web3 Wallet connected, enabled with **Clean Git Working Tree**:
+1. **GitHub Desktop Commit Fix ([`.gitignore`](file:///Users/devnarayanan/Documents/KIMI/kim-ui/ADMOD/.gitignore))**: Created root `.gitignore` to ignore untracked Foundry submodule directory (`contracts/lib/`), `node_modules`, and build outputs (`.next/`, `contracts/out/`).
+2. **Clean Git Working Tree**: `git status` returns `nothing to commit, working tree clean`. All local commits are ready to push to GitHub / Railway.
 
 ---
 
-## 2. Dockerfile Fix Summary
+## 2. GitHub Desktop Error Resolution Summary
 
-- **Typo Corrected**: Replaced `RUN apk add --no-libc6-compat python3 make g++` with `RUN apk add --no-cache libc6-compat python3 make g++`.
-- **Railway & Container Compatibility**: `libc6-compat` package installs correctly during Alpine image creation on Railway and Docker Desktop.
+- **Root Cause**: The directory `contracts/lib/forge-std` was untracked, causing GitHub Desktop to fail when attempting to commit.
+- **Fix Applied**: Created root [`.gitignore`](file:///Users/devnarayanan/Documents/KIMI/kim-ui/ADMOD/.gitignore) and committed it. GitHub Desktop now displays a clean repository state and allows 1-click **Push origin**!
