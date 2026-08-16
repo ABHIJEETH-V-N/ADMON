@@ -8,15 +8,21 @@ ADMOD is a high-performance, decentralized ad exchange delivering sub-second rea
 
 ---
 
-## 🚀 Quick Start Options
+## 🛠️ Build & Development Commands
 
-### Option 1: Local One-Click Script
+### 1. Build Smart Contracts & Web App
+```bash
+./build.sh
+```
+Compiles smart contracts (`AdExchange.sol`) with Solc 0.8.24 and builds the production Next.js 16 UI and Hono REST API.
+
+### 2. Start Application Locally
 ```bash
 ./start.sh
 ```
 Starts Next.js UI and Hono REST API on **`http://localhost:3000`**.
 
-### Option 2: Docker Container Deployment
+### 3. Docker Container Deployment
 ```bash
 docker compose up --build
 ```

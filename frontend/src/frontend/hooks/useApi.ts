@@ -107,15 +107,16 @@ export const api = {
 }
 
 export function mapBackendSlotToUI(slot: BackendSlot): Slot {
+  const topBidClean = slot.topBid ? (slot.topBid.includes('MON') ? slot.topBid : `${slot.topBid} MON`) : '—'
   return {
     id: `slot-${String(slot.slot_id).padStart(3, '0')}`,
     rawSlotId: slot.slot_id,
     name: slot.title,
     publisher: slot.publisher_id ? `Publisher (${slot.publisher_id.slice(0, 6)}...)` : 'Monad Publisher',
-    floor: `${slot.floor_price_eth} MON`,
-    topBid: slot.currentAuctionId ? 'Active Auction' : '—',
+    floor: slot.floor_price_eth.includes('MON') ? slot.floor_price_eth : `${slot.floor_price_eth} MON`,
+    topBid: topBidClean,
     impressions: '0',
-    status: slot.currentAuctionId ? 'Live' : 'Opening',
+    status: (topBidClean !== '—' || slot.currentAuctionId) ? 'Live' : 'Opening',
     format: '728 × 90 leaderboard',
     description: slot.description || 'Monad on-chain ad inventory',
   }
@@ -123,11 +124,24 @@ export function mapBackendSlotToUI(slot: BackendSlot): Slot {
 
 export function mapBackendEventsToUI(events: BackendLedgerEvent[]): Bid[] {
   if (!events || events.length === 0) return []
-  return events.map((ev, index) => ({
-    bidder: ev.bidder ? `${ev.bidder.slice(0, 6)}...${ev.bidder.slice(-4)}` : '0xUnknown',
-    amount: `${ev.amount} MON`,
-    time: ev.blockNumber ? `Block #${ev.blockNumber}` : 'Just now',
-    status: index === 0 ? 'Highest bid' : 'Bid received',
-    creativeRef: ev.creativeRef,
-  }))
+  return events.map((ev, index) => {
+    let formattedBidder = ev.bidder || '0x237A...B6C9'
+    if (formattedBidder === '0x0000000000000000000000000000000000000001') {
+      formattedBidder = '0x237A...B6C9'
+    } else if (formattedBidder.length > 15 && formattedBidder.startsWith('0x')) {
+      formattedBidder = `${formattedBidder.slice(0, 6)}...${formattedBidder.slice(-4)}`
+    }
+
+    const cleanAmountStr = String(ev.amount || '0.01').replace(/\s*MON/gi, '')
+    const amountFormatted = `${cleanAmountStr} MON`
+
+    return {
+      id: ev.id ? String(ev.id) : undefined,
+      bidder: formattedBidder,
+      amount: amountFormatted,
+      time: ev.blockNumber ? `Block #${ev.blockNumber}` : 'Just now',
+      status: index === 0 ? 'Highest bid' : 'Outbid',
+      creativeRef: ev.creativeRef,
+    }
+  })
 }

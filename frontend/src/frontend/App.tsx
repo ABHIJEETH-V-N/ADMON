@@ -213,9 +213,11 @@ export default function App() {
     if (!bid) return notify('Enter a bid amount first')
     if (!selected) return notify('Select an ad slot first')
 
+    const bidderWallet = address || '0x237A...B6C9'
+    const formattedBidder = address ? `${address.slice(0, 6)}...${address.slice(-4)}` : '0x237A...B6C9'
     const formattedAmount = `${bid} MON`
     const newBidRow: Bid = {
-      bidder: address ? `${address.slice(0, 6)}...${address.slice(-4)}` : '0xMF...2026',
+      bidder: formattedBidder,
       amount: formattedAmount,
       time: 'Just now',
       status: 'Highest bid',
@@ -227,6 +229,7 @@ export default function App() {
         slotId: selected.rawSlotId,
         bidAmount: bid,
         creativeUrl: 'https://admod.network/creative.png',
+        bidder: bidderWallet,
       })
 
       if (res.success && res.unsignedTx && isConnected) {

@@ -1,0 +1,22 @@
+{
+  "name": "admod-exchange",
+  "version": "1.0.0",
+  "private": true,
+  "description": "On-Chain Real-Time Bidding (RTB) Ad Exchange on Monad Testnet",
+  "main": "start.sh",
+  "scripts": {
+    "dev": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "start": "cd frontend && npm run start"
+  },
+  "keywords": [
+    "monad",
+    "web3",
+    "rtb",
+    "ad-exchange",
+    "hono",
+    "nextjs"
+  ],
+  "author": "ADMOD Team",
+  "license": "MIT"
+}
