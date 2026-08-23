@@ -1,4 +1,6 @@
-# ADMOD — On-Chain Real-Time Bidding (RTB) Ad Exchange
+<div align="center"><img src="admon.gif"></div>
+
+# ADMON — On-Chain Real-Time Bidding (RTB) Ad Exchange
 
 **contract address**: 0x1d6A305A2547439D11389192ddCE3bF5318D1B42
 
@@ -6,7 +8,7 @@
 [![Framework](https://img.shields.io/badge/Framework-Next.js%2016%20%7C%20Hono-black)](https://nextjs.org/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-blue)](https://www.docker.com/)
 
-ADMOD is a high-performance, decentralized ad exchange delivering sub-second real-time bidding, slot isolation, and transparent on-chain auction settlement on the Monad network.
+ADMON is a high-performance, decentralized ad exchange delivering sub-second real-time bidding, slot isolation, and transparent on-chain auction settlement on the Monad network.
 
 ---
 
